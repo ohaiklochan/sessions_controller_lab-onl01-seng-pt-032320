@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
   end
   
   def create
-    if params[:name] == "" || params[:name] == nil
+    if params[:username] == "" || params[:username] == nil
       redirect_to login_path
     else  
       session[:username] = params[:username]
@@ -12,6 +12,7 @@ class SessionsController < ApplicationController
   end
   
   def destroy
-    session.delete :username
+    if session[:username]
+      session.delete :username
   end
 end
